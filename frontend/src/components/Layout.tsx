@@ -1,10 +1,10 @@
-import {Avatar, Box, Flex, Text} from "@chakra-ui/react";
-import {Link} from "react-router-dom";
-import {SidebarIcon} from "./SidebarIcon.tsx";
+import {Avatar, Flex,} from "@chakra-ui/react";
 import {AiOutlineHome} from "react-icons/ai";
-import {BsBell, BsBoxArrowRight, BsChat, BsFolder2Open, BsGear} from "react-icons/bs";
+import {BsChat, BsBell, BsGear, BsBoxArrowRight, BsFolder2Open} from "react-icons/bs";
+import {SidebarIcon} from "./SidebarIcon.tsx";
+import {Link, Outlet} from "react-router-dom";
 
-export function Task(){
+function Layout() {
     return (
         <Flex>
             <Flex borderRadius='20' bg='gray.100' p={2} minHeight='calc(100vh - 32px)' justifyContent='space-between'
@@ -15,18 +15,20 @@ export function Task(){
                     <Link to="/"><SidebarIcon icon={<AiOutlineHome/>}/></Link>
                     <Link to="/notify"><SidebarIcon icon={<BsBell/>}/></Link>
                     <Link to="/chat"><SidebarIcon icon={<BsChat/>}/></Link>
-                    <Link to="/task"><SidebarIcon icon={<BsFolder2Open/>}/></Link>
+                    <Link to="/projects"><SidebarIcon icon={<BsFolder2Open/>}/></Link>
                 </Flex>
                 <Flex flexDirection='column' gap='4'>
                     <Link to="/options"><SidebarIcon icon={<BsGear/>}/></Link>
                     <SidebarIcon icon={<BsBoxArrowRight/>}/>
                 </Flex>
             </Flex>
-            <Flex marginLeft='5' marginY='4'>
-                <Box maxW='sm' maxH='sm' borderWidth='1px' borderRadius='lg' overflow='hidden'>
-                    <Text>Тут задачи и проекты</Text>
-                </Box>
-            </Flex>
+              <Flex marginLeft='5' marginY='4'>
+              <Outlet/>
+              </Flex>
+
         </Flex>
-    )
+
+    );
 }
+
+export default Layout;
